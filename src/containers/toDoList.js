@@ -11,19 +11,26 @@ const TodoList = (props) => {
     console.log(textRef.current.value);
     setTodoVal([...todoItem, todoItemlist]);
   };
-  const onDeleteHandler = () => {
-    const todoItemupdated = todoItem.splice(1, 1);
-    setTodoVal([...todoItem, todoItemupdated]);
+  const onDeleteHandler = (key) => {
+    console.log(key);
+    console.log(todoItem);
+    const todoItemupdated = todoItem.filter((val, i) => i !== key);
+    console.log(todoItemupdated);
+    setTodoVal([...todoItemupdated]);
   };
 
   const todolists = todoItem.map((val, i) => {
-    return <li key={i}>{val}</li>;
+    return (
+      <li key={i} onClick={() => onDeleteHandler(i)}>
+        {val}
+      </li>
+    );
   });
   return (
     <div>
       <input type="text" ref={textRef} />
       <input type="button" value="Submit" onClick={onSubmitHandler} />
-      <input type="button" value="Delete" onClick={onDeleteHandler} />
+      {/* <input type="button" value="Delete" onClick={onDeleteHandler} /> */}
       <h2>Todo Items</h2>
       <div>
         <ul>{todolists}</ul>
