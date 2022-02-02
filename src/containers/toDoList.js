@@ -10,6 +10,7 @@ const TodoList = (props) => {
     const todoItemlist = textRef.current.value;
     console.log(textRef.current.value);
     setTodoVal([...todoItem, todoItemlist]);
+    textRef.current.value = null;
   };
   const onDeleteHandler = (key) => {
     console.log(key);
